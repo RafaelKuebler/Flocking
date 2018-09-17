@@ -218,7 +218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fishPrefab: {fileID: 1138331384927246, guid: f4fd60554feb830408409b09d8c5f2d0, type: 2}
-  number: 75
+  number: 150
 --- !u!4 &576343055
 Transform:
   m_ObjectHideFlags: 0

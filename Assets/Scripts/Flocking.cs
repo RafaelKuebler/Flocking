@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class Flocking : MonoBehaviour
 {
-    [Range(1, 10)]
+    public Vector3 baseRotation;
+
+    [Range(0, 10)]
     public float maxSpeed = 1f;
 
-    [Range(.01f, .05f)]
+    [Range(.1f, .5f)]
     public float maxForce = .03f;
 
     [Range(1, 10)]
-    public float neighbourhoodRadius = 6f;
+    public float neighborhoodRadius = 3f;
 
     [Range(0, 3)]
     public float separationAmount = 1f;
@@ -37,13 +39,13 @@ public class Flocking : MonoBehaviour
     private void Start()
     {
         float angle = Random.Range(0, 2 * Mathf.PI);
-        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle) + baseRotation);
         velocity = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
     }
 
     private void Update()
     {
-        var boidColliders = Physics2D.OverlapCircleAll(Position, neighbourhoodRadius);
+        var boidColliders = Physics2D.OverlapCircleAll(Position, neighborhoodRadius);
         var boids = boidColliders.Select(o => o.GetComponent<Flocking>()).ToList();
         boids.Remove(this);
 
@@ -66,7 +68,7 @@ public class Flocking : MonoBehaviour
     public void UpdateVelocity()
     {
         velocity += acceleration;
-        velocity = velocity.normalized * maxSpeed;
+        velocity = LimitMagnitude(velocity, maxSpeed);
     }
 
     private void UpdatePosition()
@@ -77,7 +79,7 @@ public class Flocking : MonoBehaviour
     private void UpdateRotation()
     {
         var angle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle - 58));
+        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle) + baseRotation);
     }
 
     private Vector2 Alignment(IEnumerable<Flocking> boids)
@@ -114,7 +116,7 @@ public class Flocking : MonoBehaviour
     private Vector2 Separation(IEnumerable<Flocking> boids)
     {
         var direction = Vector2.zero;
-        boids = boids.Where(o => DistanceTo(o) <= neighbourhoodRadius / 2);
+        boids = boids.Where(o => DistanceTo(o) <= neighborhoodRadius / 2);
         if (!boids.Any()) return direction;
 
         foreach (var boid in boids)
@@ -131,10 +133,7 @@ public class Flocking : MonoBehaviour
     private Vector2 Steer(Vector2 desired)
     {
         var steer = desired - velocity;
-        if (steer.sqrMagnitude > maxForce * maxForce)
-        {
-            steer = steer.normalized * maxForce;
-        }
+        steer = LimitMagnitude(steer, maxForce);
 
         return steer;
     }
@@ -142,6 +141,15 @@ public class Flocking : MonoBehaviour
     private float DistanceTo(Flocking boid)
     {
         return Vector3.Distance(boid.transform.position, Position);
+    }
+
+    private Vector2 LimitMagnitude(Vector2 baseVector, float maxMagnitude)
+    {
+        if (baseVector.sqrMagnitude > maxMagnitude * maxMagnitude)
+        {
+            baseVector = baseVector.normalized * maxMagnitude;
+        }
+        return baseVector;
     }
 
     private void WrapAround()
