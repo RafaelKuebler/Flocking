@@ -200,7 +200,7 @@ GameObject:
   - component: {fileID: 576343055}
   - component: {fileID: 576343054}
   m_Layer: 0
-  m_Name: PhysicsFishInstantiator
+  m_Name: FishInstantiator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

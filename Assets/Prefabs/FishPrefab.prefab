@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4302473192453644}
   - component: {fileID: 114663801763493746}
   - component: {fileID: 212898628359471008}
+  - component: {fileID: 60744654397849092}
   m_Layer: 0
   m_Name: FishPrefab
   m_TagString: Untagged
@@ -35,12 +36,39 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1138331384927246}
   m_LocalRotation: {x: -0, y: -0, z: -0.48467922, w: 0.87469196}
-  m_LocalPosition: {x: -8.636557, y: -2.3420274, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -57.983}
+--- !u!60 &60744654397849092
+PolygonCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1138331384927246}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5.12, y: 5.12}
+    newSize: {x: 5.12, y: 5.12}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.37581772, y: -2.100444}
+      - {x: -1.9307897, y: -0.6940896}
+      - {x: 1.3386724, y: 2.1414537}
 --- !u!114 &114663801763493746
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -55,9 +83,9 @@ MonoBehaviour:
   maxSpeed: 3
   maxForce: 0.2
   neighbourhoodRadius: 3
-  calculateSeparation: 1
-  calculateCohesion: 1
-  calculateAlignment: 1
+  separationAmount: 1.5
+  cohesionAmount: 1
+  alignmentAmount: 1
   acceleration: {x: 0, y: 0}
   velocity: {x: 0, y: 0}
 --- !u!212 &212898628359471008

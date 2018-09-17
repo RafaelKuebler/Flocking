@@ -4,13 +4,24 @@ using UnityEngine;
 
 public class Flocking : MonoBehaviour
 {
+    [Range(1, 10)]
     public float maxSpeed = 1f;
+
+    [Range(.01f, .05f)]
     public float maxForce = .03f;
+
+    [Range(1, 10)]
     public float neighbourhoodRadius = 6f;
 
-    public bool calculateSeparation = true;
-    public bool calculateCohesion = true;
-    public bool calculateAlignment = true;
+    [Range(0, 3)]
+    public float separationAmount = 1f;
+
+    [Range(0, 3)]
+    public float cohesionAmount = 1f;
+
+    [Range(0, 3)]
+    public float alignmentAmount = 1f;
+
     public Vector2 acceleration;
     public Vector2 velocity;
 
@@ -32,7 +43,7 @@ public class Flocking : MonoBehaviour
 
     private void Update()
     {
-        var boids = FindObjectsOfType<Flocking>();
+        var boids = Physics2D.OverlapCircleAll(Position, neighbourhoodRadius).Select(o => o.GetComponent<Flocking>());
 
         Flock(boids);
         UpdateVelocity();
@@ -43,17 +54,17 @@ public class Flocking : MonoBehaviour
 
     private void Flock(IEnumerable<Flocking> boids)
     {
-        var alignment = calculateAlignment ? Alignment(boids) : Vector2.zero;
-        var separation = calculateSeparation ? Separation(boids) : Vector2.zero;
-        var cohesion = calculateCohesion ? Cohesion(boids) : Vector2.zero;
+        var alignment = Alignment(boids);
+        var separation = Separation(boids);
+        var cohesion = Cohesion(boids);
 
-        acceleration = alignment + cohesion + 1.5f * separation;
+        acceleration = alignmentAmount * alignment + cohesionAmount * cohesion + separationAmount * separation;
     }
 
     public void UpdateVelocity()
     {
         velocity += acceleration;
-        velocity = velocity.normalized * maxSpeed; // limit to max speed
+        velocity = velocity.normalized * maxSpeed;
     }
 
     private void UpdatePosition()
