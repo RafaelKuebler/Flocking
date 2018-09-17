@@ -43,7 +43,9 @@ public class Flocking : MonoBehaviour
 
     private void Update()
     {
-        var boids = Physics2D.OverlapCircleAll(Position, neighbourhoodRadius).Select(o => o.GetComponent<Flocking>());
+        var boidColliders = Physics2D.OverlapCircleAll(Position, neighbourhoodRadius);
+        var boids = boidColliders.Select(o => o.GetComponent<Flocking>()).ToList();
+        boids.Remove(this);
 
         Flock(boids);
         UpdateVelocity();
@@ -78,15 +80,9 @@ public class Flocking : MonoBehaviour
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle - 58));
     }
 
-    private float DistanceTo(Flocking boid)
-    {
-        return Vector3.Distance(boid.transform.position, Position);
-    }
-
     private Vector2 Alignment(IEnumerable<Flocking> boids)
     {
         var velocity = Vector2.zero;
-        boids = boids.Where(o => DistanceTo(o) <= neighbourhoodRadius && o != this);
         if (!boids.Any()) return velocity;
 
         foreach (var boid in boids)
@@ -101,7 +97,6 @@ public class Flocking : MonoBehaviour
 
     private Vector2 Cohesion(IEnumerable<Flocking> boids)
     {
-        boids = boids.Where(o => DistanceTo(o) <= neighbourhoodRadius && o != this);
         if (!boids.Any()) return Vector2.zero;
 
         var sumPositions = Vector2.zero;
@@ -119,7 +114,7 @@ public class Flocking : MonoBehaviour
     private Vector2 Separation(IEnumerable<Flocking> boids)
     {
         var direction = Vector2.zero;
-        boids = boids.Where(o => DistanceTo(o) <= neighbourhoodRadius / 2 && o != this);
+        boids = boids.Where(o => DistanceTo(o) <= neighbourhoodRadius / 2);
         if (!boids.Any()) return direction;
 
         foreach (var boid in boids)
@@ -142,6 +137,11 @@ public class Flocking : MonoBehaviour
         }
 
         return steer;
+    }
+
+    private float DistanceTo(Flocking boid)
+    {
+        return Vector3.Distance(boid.transform.position, Position);
     }
 
     private void WrapAround()
