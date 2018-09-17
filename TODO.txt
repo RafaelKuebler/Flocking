@@ -1,7 +1,3 @@
-Change whole implementation to add force instead of setting velocity directly
-https://docs.unity3d.com/ScriptReference/Rigidbody2D.AddForce.html
-(thing being calculated right now is acceleration which is added directly to velocity (can also be multiplied by mass))
-
 Nice presentation
 http://www.cs.cmu.edu/afs/cs/academic/class/15462-s10/www/lec-slides/Lecture24_flocking.pdf
 
