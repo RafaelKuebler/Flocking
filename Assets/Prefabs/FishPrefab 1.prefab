@@ -19,12 +19,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4302473192453644}
-  - component: {fileID: 212292628240383046}
-  - component: {fileID: 114832159512773284}
-  - component: {fileID: 70505624345827072}
-  - component: {fileID: 50217473093690356}
+  - component: {fileID: 114663801763493746}
+  - component: {fileID: 212898628359471008}
+  - component: {fileID: 60744654397849092}
   m_Layer: 0
-  m_Name: FishPhysicsPrefab
+  m_Name: FishPrefab 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36,35 +35,15 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1138331384927246}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: -0.84976846, w: 0.52715605}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &50217473093690356
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1138331384927246}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0.5
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!70 &70505624345827072
-CapsuleCollider2D:
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -116.373}
+--- !u!60 &60744654397849092
+PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -72,13 +51,25 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.4, y: 0.2}
-  m_Direction: 1
---- !u!114 &114832159512773284
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.37277356, y: 0.504241}
+    oldSize: {x: 5.12, y: 5.12}
+    newSize: {x: 5.12, y: 5.12}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.37581772, y: -2.100444}
+      - {x: -1.9307897, y: -0.6940896}
+      - {x: 1.3386724, y: 2.1414537}
+--- !u!114 &114663801763493746
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -86,18 +77,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1138331384927246}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5af347e113d1981498f9a39fc6f884b6, type: 3}
+  m_Script: {fileID: 11500000, guid: fbd3e66d8d5be4a4aa0d7a875875d56b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 6
-  neighbourhoodRadius: 4
-  separation: 1
-  cohesion: 1
-  alignment: 1
-  separationVelocity: {x: 0, y: 0}
-  cohesionVelocity: {x: 0, y: 0}
-  alignmentVelocity: {x: 0, y: 0}
---- !u!212 &212292628240383046
+  baseRotation: {x: 0, y: 0, z: -116.373}
+  maxSpeed: 3
+  maxForce: 0.1
+  neighborhoodRadius: 3
+  separationAmount: 1.2
+  cohesionAmount: 1
+  alignmentAmount: 1
+  acceleration: {x: 0, y: 0}
+  velocity: {x: 0, y: 0}
+--- !u!212 &212898628359471008
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -132,12 +124,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300050, guid: 4324e706bf93cde4d91c957046d5a4f6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7b89f20fc4d6d5841a734eab20bb77ec, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.32, y: 0.32}
+  m_Size: {x: 5.12, y: 5.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

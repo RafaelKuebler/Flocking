@@ -146,7 +146,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
@@ -217,7 +217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4385f3f32ee5acd469979ee445ac7134, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fishPrefab: {fileID: 1138331384927246, guid: f4fd60554feb830408409b09d8c5f2d0, type: 2}
+  fishPrefab: {fileID: 1138331384927246, guid: 9d1d0b91403a8814ab6853947579bad9, type: 2}
   number: 150
 --- !u!4 &576343055
 Transform:
