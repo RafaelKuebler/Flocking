@@ -1,6 +1,10 @@
 # Unity3D Flocking using Craig Reynolds' Boids
 
-2D implementation of [Craig Reynolds' boids](http://www.cs.toronto.edu/~dt/siggraph97-course/cwr87/) in the game engine Unity3D.
+
+2D implementation of [Craig Reynolds' boids](http://www.cs.toronto.edu/~dt/siggraph97-course/cwr87/) in the Unity3D game engine.
+
+<img alt="150 boids" src="https://user-images.githubusercontent.com/9216979/45744864-d3d7f400-bbff-11e8-9e3e-0bee1d2f5865.gif" width="500">
+
 The boid's emergent flocking behaviour is caused by [3 rules](http://www.red3d.com/cwr/boids/):
 
 * **Alignment**: steer towards the direction nearby boids are heading
